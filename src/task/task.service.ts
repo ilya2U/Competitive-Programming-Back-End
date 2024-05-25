@@ -29,6 +29,14 @@ export class TaskService {
     return await this.tasksRepository.findByIdAndUpdate(id, { $set }).exec();
   }
 
+  async deleteOne(knownData: Partial<Task>): Promise<void> {
+    const taskToDelete = await this.findOne(knownData);
+    if (!taskToDelete) {
+      throw new BadRequestException('Task not found');
+    }
+    await this.tasksRepository.findByIdAndDelete(taskToDelete.id).exec();
+  }
+
   /* API methods */
 
   async createTask(payload: Task): Promise<Task> {

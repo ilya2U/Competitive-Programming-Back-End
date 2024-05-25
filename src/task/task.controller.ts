@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { AuthGuard } from '@/auth';
 import { Task } from './schemas/task.schema';
@@ -23,5 +23,11 @@ export class TaskController {
   @Post()
   async createTask(@Body() payload: Task): Promise<Task> {
     return this.taskService.createTask(payload);
+  }
+
+  @UseGuards(AuthGuard)
+  @Delete('/:id')
+  async deleteTask(@Param('id') uuid: string): Promise<void> {
+    await this.taskService.deleteOne({ uuid });
   }
 }
