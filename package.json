@@ -2,7 +2,7 @@
   "name": "axcodewars-api",
   "version": "0.0.1",
   "description": "Simple backend for codewars app",
-  "author": "Evgeniy Grigorev",
+  "author": "Androsov Ilya",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

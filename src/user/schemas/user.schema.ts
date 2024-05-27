@@ -5,6 +5,7 @@ export type TUserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
+
   @Prop()
   uuid: string;
 
@@ -19,6 +20,9 @@ export class User {
 
   @Prop()
   hash: string;
+  
+  @Prop({ default: 0 })
+  points: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
