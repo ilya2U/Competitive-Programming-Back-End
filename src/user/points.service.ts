@@ -11,13 +11,8 @@ export class PointsService {
     return this.userModel.find().sort({ points: -1 }).exec();
   }
 
-  async getPointsById(id: string): Promise<number | null> {
-    const user = await this.userModel.findById(id).exec();
-    return user? user.points : null;
-  }
-
-  async addPointsById(id: string, pointsToAdd: number): Promise<TUserDocument | null> {
-    const user = await this.userModel.findByIdAndUpdate(id, { $inc: { points: pointsToAdd } }, { new: true }).exec();
+  async addPointsByUuid(uuid: string): Promise<TUserDocument | null> {
+    const user = await this.userModel.findOneAndUpdate({ uuid }, { $inc: { points: 10 } }, { new: true }).exec();
     return user;
   }
   

@@ -18,15 +18,10 @@ export class UserController {
       throw new BadRequestException();
     }
   }
-
-  @Get('/points/:id')
-  async getUserPoints(@Param('id') id: string) {
-    return this.pointsService.getPointsById(id);
-  }
-
-  @Post('/points/:id')
-  async addUserPoints(@Param('id') id: string, @Body('pointsToAdd') pointsToAdd: number) {
-    return this.pointsService.addPointsById(id, pointsToAdd);
+  
+  @Post('/points/:uuid')
+  async addUserPoints(@Param('uuid') uuid: string) {
+    return this.pointsService.addPointsByUuid(uuid);
   }
 
   @Get('/points')
